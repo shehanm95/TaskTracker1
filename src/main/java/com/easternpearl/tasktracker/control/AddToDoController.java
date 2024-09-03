@@ -49,7 +49,8 @@ public class AddToDoController implements Initializable , TodoSetters {
             this.dabase.AddTodos(todo);
             homeWindow.reloadWindow();
             this.clearFields();
-        };
+            //cear fields
+        }
     }
 
     private void clearFields() {
