@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="615.0" prefWidth="818.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easternpearl.tasktracker.control.AddToDoController">
+<AnchorPane prefHeight="615.0" prefWidth="818.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.easternpearl.tasktracker.control.EditToDoController">
    <children>
-      <Button layoutX="452.0" layoutY="566.0" mnemonicParsing="false" onAction="#addToListAction" prefHeight="29.0" prefWidth="198.0" styleClass="button-38" stylesheets="@css/style.css" text="Add To List" />
+      <Button layoutX="452.0" layoutY="566.0" mnemonicParsing="false" onAction="#editToListAction" prefHeight="29.0" prefWidth="198.0" styleClass="button-38" stylesheets="@css/style.css" text="Update Task" />
       <Label layoutX="108.0" layoutY="28.0" prefHeight="59.0" prefWidth="252.0" text="Add To Do;">
          <font>
             <Font name="Candara Bold" size="32.0" />

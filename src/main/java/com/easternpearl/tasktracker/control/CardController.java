@@ -1,6 +1,6 @@
 package com.easternpearl.tasktracker.control;
 
-import com.easternpearl.tasktracker.medel.ToDo;
+import com.easternpearl.tasktracker.medel.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -16,7 +16,7 @@ public class CardController {
     private Label titleText;
 
 
-    private ToDo todo;
+    private Task todo;
     private HomeController home;
 
     public void setTitle(String cardTitle) {
@@ -31,10 +31,12 @@ public class CardController {
     @FXML
     void displayDetails(MouseEvent event) {
         this.home.displayDetails(todo);
+        this.home.setCurrentToDo(todo);
+        this.home.finishedButtonEditAndActivate();
     }
 
 
-    public void setHomeDetails(HomeController home, ToDo currentToDo){
+    public void setHomeDetails(HomeController home, Task currentToDo){
         this.home = home;
         this.todo = currentToDo;
     }

@@ -9,10 +9,10 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @Builder
-public class ToDo {
+public class Task {
     int id;
     String Title;
-    int category;
+    String category;
     String Description;
     Boolean finished;
     LocalDate startDate;

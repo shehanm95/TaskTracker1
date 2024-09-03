@@ -1,5 +1,6 @@
 package com.easternpearl.tasktracker.control;
 
-public class ToDoCardController {
+public enum TaskState {
 
+    FINISHED,ACTIVE,ALL
 }

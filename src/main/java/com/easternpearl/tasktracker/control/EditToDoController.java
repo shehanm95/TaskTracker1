@@ -9,17 +9,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 import lombok.Setter;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class AddToDoController implements Initializable , TodoSetters {
+public class EditToDoController implements Initializable , TodoSetters {
 
 
     @FXML
@@ -32,38 +33,42 @@ public class AddToDoController implements Initializable , TodoSetters {
     private DatePicker startDate;
     @Setter
     private HomeController homeWindow;
-    private Database dabase;
+    private Database database;
+    private Task todo;
 
     @FXML
-    void addToListAction(ActionEvent event) {
+    void editToListAction(ActionEvent event) {
         Task todo = new Task(
-                0,
+                this.todo.getId(),
                 todoTitleText.getText(),
                 comboTodoCategory.getValue(),
                 todoDescriptionText.getText(),
-                false,
+                this.todo.getFinished(),
                 startDate.getValue(),
-                null);
+                this.todo.getEndDate());
 
         if( ControlManager.isValid(todo)){
-            this.dabase.AddTodos(todo);
+            this.database.updateTodo(todo);
             homeWindow.reloadWindow();
-            this.clearFields();
+            homeWindow.displayDetails(todo);
+            new Alert(Alert.AlertType.INFORMATION,"You updated this todo successfully...!", ButtonType.OK);
+            Stage stage = (Stage) this.todoTitleText.getScene().getWindow();
+            stage.close();
         };
     }
 
     private void clearFields() {
-            todoTitleText.setText(null);
-            comboTodoCategory.setValue(null);
-            todoDescriptionText.setText(null);
-            startDate.setValue(null);
+        todoTitleText.setText(null);
+        comboTodoCategory.setValue(null);
+        todoDescriptionText.setText(null);
+        startDate.setValue(null);
 
     }
 
     @FXML
     void discardAction(ActionEvent event) {
-           Stage stage = (Stage) this.todoTitleText.getScene().getWindow();
-           stage.close();
+        Stage stage = (Stage) this.todoTitleText.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
@@ -72,6 +77,7 @@ public class AddToDoController implements Initializable , TodoSetters {
     void addToDoCategory(ActionEvent event) {
 
         FXMLLoader loader =  ControlManager.loardScene(addCategoryStage,"Add Category","add_category_stage");
+
         AddCategoryController categoryController = loader.getController();
         categoryController.setAddToDoController(this);
         categoryController.setCategoryStage(addCategoryStage);
@@ -79,17 +85,25 @@ public class AddToDoController implements Initializable , TodoSetters {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        dabase = Database.getDataBase();
+        database = Database.getDataBase();
         this.reload();
-        this.startDate.setValue(LocalDate.now());
-        this.comboTodoCategory.setValue("Default");
     }
 
     public void reload(){
-        ArrayList<String> categories =dabase.getCategoryAll();
-        ArrayList<String> withoutAll = new ArrayList<String>(categories);
-        withoutAll.remove("All");
-        comboTodoCategory.setItems(FXCollections.observableList(withoutAll));
+        ArrayList<String> categories = database.getCategoryAll();
+        comboTodoCategory.setItems(FXCollections.observableList(categories));
+
+    }
+
+
+
+    public void fillValues(Task todo){
+        this.todo = todo;
+        this.todoTitleText.setText( todo.getTitle());
+        this.todoDescriptionText.setText( todo.getDescription());
+        this.startDate.setValue(todo.getStartDate());
+        this.startDate.setDisable(true);
+
     }
 
 

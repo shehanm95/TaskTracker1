@@ -2,9 +2,9 @@
     -fx-background-color: #B9C8DB; /* Normal white background */
     -fx-text-fill: #111827; /* Dark text color for contrast */
     -fx-border-color: #2C4A8D; /* Slightly darker blue border */
-    -fx-border-width: 2px; /* Border width */
-    -fx-border-radius: 0.5rem; /* Rounded corners */
-    -fx-background-radius: 1rem; /* Matching border and background radius */
+    -fx-border-width: 1px; /* Border width */
+    -fx-border-radius: 10px; /* Rounded corners */
+    -fx-background-radius: 10px; /* Matching border and background radius */
     -fx-font-family: "Inter var", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     -fx-font-size: 0.875rem; /* Font size */
     -fx-font-weight: 600; /* Font weight */
@@ -31,4 +31,10 @@
 .card{
     -fx-border-radius : 10px;
      -fx-margin: 10px;
+}
+
+.sub_todo_card{
+-fx-background-color: #D9E6F6;
+-fx-border-radius: 10;
+-fx-background-radius: 10;
 }
